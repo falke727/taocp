@@ -1,0 +1,154 @@
+%定義
+
+%\input{setting}
+
+%\documentclass[11pt,twocolumn]{jarticle} 
+\documentclass[11pt,dvipdfmx]{jarticle} 
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{comment}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{euler}
+\usepackage{color}
+%\usepackage{theorem}
+%\usepackage{proof}
+\usepackage[deluxe]{otf}
+%\usepackage{mathptmx}
+
+%\newtheorem{def}{定義}[section]
+
+\pagestyle{empty}
+
+%余白とか
+
+\setlength{\topmargin}{-2cm} 
+\setlength{\textheight}{26.5cm} 
+\setlength{\textwidth}{18.5cm}
+\setlength{\oddsidemargin}{-1.3cm} 
+\setlength{\columnsep}{.5cm}
+\newcommand{\noin}{\noindent}
+\catcode`@=\active \def@{\hspace{0.9bp}-\hspace{0.9bp}}
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[section]
+\newtheorem{proposition}{命題}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}{補題}[section]
+
+
+%タイトル
+\title{The Art of Computer Programming Exercises解答集}
+\setcounter{footnote}{1}
+\author{原田 崇司\thanks{神奈川大学大学院理学研究科理学専攻情報科学領域}}
+\date{\today}
+\西暦
+
+%タイトル作成
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\setcounter{section}{1}
+\setcounter{subsection}{2}
+
+
+\setcounter{subsubsection}{3}
+
+\begin{lemma}
+ \[
+  \forall k. \, \forall l. \ k \in \mathbb{R} \Rightarrow l \in \mathbb{Z} \Rightarrow \biggl( \lfloor k \rfloor < l \iff k < l \biggr)
+ \]
+ \label{lemma:p41a}
+\end{lemma}
+
+\begin{lemma}
+ \[
+  \forall k. \, \forall l. \ k \in \mathbb{R} \Rightarrow l \in \mathbb{Z} \Rightarrow \biggl( l \leq \lfloor k \rfloor \iff l \leq k \biggr)
+ \]
+ \label{lemma:p41b}
+\end{lemma}
+
+\begin{lemma}
+ \[
+  \forall k. \, \forall l. \ k \in \mathbb{R} \Rightarrow l \in \mathbb{Z} \Rightarrow \biggl( \lceil k \rceil \leq l \iff k \leq l \biggr)
+ \]
+ \label{lemma:p41c}
+\end{lemma}
+
+\begin{lemma}
+ \[
+  \forall k. \, \forall l. \ k \in \mathbb{R} \Rightarrow l \in \mathbb{Z} \Rightarrow \biggl( l < \lceil k \rceil \iff l < k \biggr)
+ \]
+ \label{lemma:p41d}
+\end{lemma}
+
+\begin{lemma}
+ \[
+  \forall k. \, \forall l. \ k \in \mathbb{R} \Rightarrow l \in \mathbb{Z} \Rightarrow \biggl( \lfloor k \rfloor = l \iff l \leq k < l+1\biggr)
+ \]
+ \label{lemma:p41e}
+\end{lemma}
+
+\begin{lemma}
+ \[
+  \forall k. \, \forall l. \ k \in \mathbb{R} \Rightarrow l \in \mathbb{Z} \Rightarrow \biggl( \lceil k \rceil = l \iff l-1 < k \leq l \biggr)
+ \]
+ \label{lemma:p41f}
+\end{lemma}
+
+
+
+\subsubsection{35. [M20]}
+\begin{equation}
+\forall x. \, \forall m. \, \forall n. \  x \in \mathbb{R} \Rightarrow m \in \mathbb{Z} \Rightarrow n \in \mathbb{Z}^{+} \Rightarrow \lfloor \frac{x+m}{n} \rfloor =  \lfloor \frac{ \lfloor x \rfloor +m}{n} \rfloor
+ \label{eq:1_2_4_35_goal}
+\end{equation}
+を示す．
+
+\begin{proof}
+実数$x$，整数$m$，正の整数$n$をそれぞれ任意に取る．
+\begin{equation}
+\lfloor \frac{x+m}{n} \rfloor =  \lfloor \frac{ \lfloor x \rfloor +m}{n} \rfloor
+ \label{eq:1_2_4_35_goal'}
+\end{equation}
+を示す．
+
+\begin{equation}
+ \begin{split}
+   & \bigl( (x+m) \bmod n \bigr) \geq 0 \\
+ \iff  & \bigl( (x+m) \bmod n \bigr) -x \geq -x \\
+ \iff  & x - \bigl( (x+m) \bmod n \bigr) \leq x \\
+ \iff  & x - \bigl( (x+m) \bmod n \bigr) \leq \lfloor x \rfloor \\
+ \iff  & (x+m) - \bigl( (x+m) \bmod n \bigr) \leq \lfloor x \rfloor + m \\
+ \iff  & n \lfloor \frac{x+m}{n} \rfloor \leq \lfloor x \rfloor + m \\
+ \iff  & \lfloor \frac{x+m}{n} \rfloor \leq \frac{\lfloor x \rfloor + m}{n}
+ \end{split}
+ \label{eq:1_2_4_35_lem1}
+\end{equation}
+
+\begin{equation}
+ \begin{split}
+   & \bigl( (x+m) \bmod n \bigr) < n \\
+ \iff  & x < x - \bigl( (x+m) \bmod n \bigr) + n \\
+ \iff  & \lfloor x \rfloor < x - \bigl( (x+m) \bmod n \bigr) + n \\
+ \iff  & \lfloor x \rfloor + m < (x+m) - \bigl( (x+m) \bmod n \bigr) + n \\
+ \iff  & \lfloor x \rfloor + m < n\lfloor \frac{x+m}{n} \rfloor + n \\
+ \iff  & \frac{\lfloor x \rfloor + m}{n} < \lfloor \frac{x+m}{n} \rfloor + 1
+ \label{eq:1_2_4_35_lem2}
+ \end{split}
+\end{equation}
+(\ref{eq:1_2_4_35_lem1}),(\ref{eq:1_2_4_35_lem2})より
+\begin{equation}
+\lfloor \frac{x+m}{n} \rfloor \leq \frac{\lfloor x \rfloor + m}{n} < \lfloor \frac{x+m}{n} \rfloor + 1
+ \label{eq:ans}
+\end{equation}
+が成り立つ．
+(\ref{eq:ans})と(\ref{eq:1_2_4_35_goal'})は(\ref{lemma:p41e})より同値である．\par
+\noindent ここで，$x,m,n$は任意であったので(\ref{eq:1_2_4_35_goal})が成り立つ．
+\end{proof}
+
+\end{document}
